@@ -60,9 +60,9 @@ public static class Deobfuscation
 					case Opcode.SuperOpcode:
 						Console.WriteLine($"\tEnum: {dict.Key}, Opcode: {dict.Value.Opcode}");
 						foreach (var superOpcode in dict.Value.SuperOpcode.Operations)
-							Console.WriteLine(dict.Value.SubOpcode == SubOpcode.None
-								? $"\tEnum: {dict.Key}, Opcode: {dict.Value.Opcode}"
-								: $"\tEnum: {dict.Key}, Opcode: {dict.Value.Opcode} | SubOpcode: {dict.Value.SubOpcode}");
+							Console.WriteLine(superOpcode.SubOpcode == SubOpcode.None
+								? $"\t\tEnum: {dict.Key}, Opcode: {superOpcode.Opcode}"
+								: $"\t\tEnum: {dict.Key}, Opcode: {superOpcode.Opcode} | SubOpcode: {dict.Value.SubOpcode}");
 						break;
 					case Opcode.Unmatched:
 						throw new InvalidOperationException("Operation is not matched.");

@@ -341,7 +341,7 @@ public class Solver(Session session) // Ugh. This is a quick code and this will 
             if (instr.Opcode is Opcode.NewStack or Opcode.SetFenv or Opcode.PushStack or Opcode.SetTop or Opcode.SetFenv)
             {
                 instr.Opcode = Opcode.LoadK;
-                var constantB = new Constant("This file is deobfuscated by OpenLuaBytecode Ironbrew Deobfuscator. Please check the GitHub repository for more information.");
+                var constantB = new Constant("This file is deobfuscated by an open-source Ironbrew Deobfuscator. Please check the GitHub repository for more information.");
                 chunk.Constants.Add(constantB);
                 instr.ConstantReferences["B"] = constantB;
                 instr.isKB = true;
@@ -387,7 +387,7 @@ public class Solver(Session session) // Ugh. This is a quick code and this will 
     
     public void AddFingerprint(Chunk chunk)
     {
-        var nConstant = new Constant("This file is deobfuscated by OpenLuaBytecode Ironbrew Deobfuscator. Please check the GitHub repository for more information.");
+        var nConstant = new Constant("This file is deobfuscated by an open-source Ironbrew Deobfuscator. Please check the GitHub repository for more information.");
         chunk.Constants.Add(nConstant);
         var nInstr = new Instruction(chunk,Opcode.LoadK,0,chunk.Constants.Count - 1,0);
         chunk.Instructions.Insert(0, nInstr);
