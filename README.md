@@ -10,6 +10,13 @@ Ironbrew Deobfuscator is a tool designed to deobfuscate scripts obfuscated with 
 
 - **Version:** beta-1.0
 
+## Features
+
+- [X] Bytecode Deobfuscation
+- [ ] Control Flow Graph Generation
+- [ ] String Decryption
+- [ ] Full Macro Support
+
 ## Table of Contents
 
 - [Installation](#installation)
