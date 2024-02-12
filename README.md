@@ -45,7 +45,7 @@ The deobfuscator provides a simple command-line interface (CLI) for interaction.
 ```plaintext
 Usage: deobf -t ib2 -f <input file path>
 Optional Parameter #1: --enable-maxcflow  --> Enables the maximum cflow deobfuscation [unstable]
-Optional Parameter #2: --debug  --> Enables the debug mode [will also output some debug files]
+Optional Parameter #2: --debug  --> Enables the debug mode [prints debug information to the console, will also output some debug files]
 ```
 ## Use directly in your C# application
 
@@ -63,7 +63,7 @@ public class YourClass
         var source = File.ReadAllText("<input file path>");
         var outputFilePath = "<output file path>";
         var enableMaxCflowDeobfuscation = false; // Set to true if you want to enable max cflow deobfuscation
-        var isDebug = false; // Set to true if you want to enable debug mode, will also output some debug files.
+        var isDebug = false; // Set to true if you want to enable debug mode, can output some unwanted debug files.
 
         var bytecode = Deobfuscation.HandleIb2Deobfuscation(source, enableMaxCflowDeobfuscation, isDebug);
 
@@ -79,7 +79,7 @@ public class YourClass
 - -f<file path>: Specify the input file path to the obfuscated script.
 - -o<output file path>: Specify the path for the output file.
 - --enable-maxcflow: Enables the maximum cflow deobfuscation (unstable).
-- --debug: Enables the debug mode. (prints debug information to the console)
+- --debug: Enables the debug mode. (prints debug information to the console, will also output some debug files)
 
 ## Examples
 ```bash
