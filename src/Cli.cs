@@ -23,7 +23,7 @@ public static class Cli
                     Console.WriteLine("Maybe try running the help command?");
                     continue;
                 case "help":
-                    Console.WriteLine("Usage: deobf -t ib2 -f <input file path>");
+                    Console.WriteLine("Usage: deobf -t ib2 -f <input file path> -o <output file path>");
                     Console.WriteLine("Optional Parameter #1: --enable-maxcflow  --> Enables the maximum cflow deobfuscation [unstable]");
                     Console.WriteLine("Optional Parameter #2: --debug  --> Enables the debug mode");
                     break;
@@ -37,7 +37,7 @@ public static class Cli
 
     private static void ParseCommandLine(IReadOnlyList<string> args)
     {
-        if (args.Count < 4 || args[0] != "deobf" || args[1] != "-t" || args[3] != "-f")
+        if (args.Count < 4 || args[0] != "deobf" || args[1] != "-t" || args[3] != "-f" || args[5] != "-o")
         {
             Console.WriteLine("Invalid command. Type 'help' for usage information.");
             return;
@@ -50,15 +50,18 @@ public static class Cli
             return;
         }
         var inputFilePath = args[4];
+        var outputFilePath = args[6];
 
         var enableMaxCFlow = args.Contains("--enable-maxcflow");
         var debugMode = args.Contains("--debug");
 
         // Call the obfuscation method with the provided parameters
         var inputFileString = File.ReadAllText(inputFilePath);
-        Deobfuscation.HandleIb2Deobfuscation(inputFileString, enableMaxCFlow, debugMode);
+        var bytecode = Deobfuscation.HandleIb2Deobfuscation(inputFileString, enableMaxCFlow, debugMode);
+        
+        File.WriteAllBytes(outputFilePath, bytecode.ToArray());
 
-        Console.WriteLine("Deobfuscation complete. Please check deobfuscated.luac!");
+        Console.WriteLine($"Deobfuscation complete. Please check {outputFilePath} !");
         Console.WriteLine("Press any key to exit.");
         Console.ReadKey();
         // close the program

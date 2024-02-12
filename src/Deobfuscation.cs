@@ -14,13 +14,14 @@ namespace IronbrewDeobfuscator;
 public static class Deobfuscation
 {
 	/// <summary>
-	/// Deobfuscate Ironbrew2 script, write the deobfuscated bytecode to deobfuscated.luac
+	/// Deobfuscate Ironbrew2 script
 	/// </summary>
 	/// <param name="source"> Source of the ib2 script</param>
 	/// <param name="enableMaxCflowDeobfuscation"> Enable MaxCflow deobfuscation</param>
 	/// <param name="isDebug">Enable debugging</param>
+	/// <returns >IEnumerable byte[]</returns>
 	/// <exception cref="InvalidOperationException"></exception>
-    public static void HandleIb2Deobfuscation(string source, bool enableMaxCflowDeobfuscation = false, bool isDebug = false)
+    public static IEnumerable<byte> HandleIb2Deobfuscation(string source, bool enableMaxCflowDeobfuscation = false, bool isDebug = false)
     {
 	    var tree = LuaSyntaxTree.Create(SyntaxFactory.ParseCompilationUnit(source)).Minify(NamingStrategies.Alphabetical, new SequentialSlotAllocator());
 
@@ -146,14 +147,13 @@ public static class Deobfuscation
 			File.WriteAllText("lua51-bytecode-listing.lua", information);
 		}
 		
-		File.WriteAllBytes("deobfuscated.luac", serialized);
 
 		if (session.IsDebug)
 			File.WriteAllText("debug-dumper.lua", session.RewrittenScript!.NormalizeWhitespace().ToFullString());
 		
 		
 		
-		return;
+		return serialized;
 
 
 		// Functions
