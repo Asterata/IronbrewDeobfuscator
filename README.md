@@ -4,7 +4,7 @@ Ironbrew Deobfuscator is a tool designed to deobfuscate scripts obfuscated with 
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![GitHub Release](https://img.shields.io/github/v/release/Asteriva/IronbrewDeobfuscator?include_prereleases)
-![GitHub Issues](https://img.shields.io/github/issues/Asteriva/IronbrewDeobfuscator/issues)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Asteriva/IronbrewDeobfuscator)
 
 ## Overview
 
