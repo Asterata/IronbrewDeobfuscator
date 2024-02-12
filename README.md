@@ -1,6 +1,7 @@
 # Ironbrew Deobfuscator
 
 Ironbrew Deobfuscator is a tool designed to deobfuscate scripts obfuscated with [Ironbrew2](https://github.com/Trollicus/ironbrew-2).
+This deobfuscator only support the latest version of Ironbrew2!
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![GitHub Release](https://img.shields.io/github/v/release/Asteriva/IronbrewDeobfuscator?include_prereleases)
@@ -25,7 +26,7 @@ Ironbrew Deobfuscator is a tool designed to deobfuscate scripts obfuscated with 
 - [Options](#options)
 - [Examples](#examples)
 - [Dependencies](#dependencies)
-- [Contributing](#contributing)
+- [Contributing](#contributing) Please take a look at this before oppening an issue.
 - [License](#license)
 - [Images and Results](#images-and-results)
 
@@ -95,7 +96,8 @@ deobf -t ib2 -f path/to/obfuscated/script.lua -o path/to/deobfuscated/script.lua
 - [NLua](http://nlua.org): Bridge between Lua world and the .NET.
 
 ## Contributing
-Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or create a pull request.
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or create a pull request. 
+Please do not send your obfuscated script in the issues, provide information about the error and ONLY provide the part that errors.
 
 ## License
 This project is licensed under the GPL-3.0 License.
