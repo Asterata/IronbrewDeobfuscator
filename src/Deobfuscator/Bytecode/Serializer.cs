@@ -36,7 +36,7 @@ public class Serializer(Chunk mainChunk)
 			if (chunk._functionId != "")
 				WriteString(chunk._functionId);
 			else
-				WriteInt(0);
+				WriteString("AST_"+Guid.NewGuid().ToString("N"));
 
 			WriteInt(0);
 			WriteInt(0);
@@ -113,9 +113,17 @@ public class Serializer(Chunk mainChunk)
 			WriteInt(chunk.Functions.Count);
 			foreach (var sChunk in chunk.Functions)
 				WriteChunk(sChunk);
-				
+
+			var debugLocaleNames = new List<string> { "_3b", "_24", "_27", "_41", "_34", "_21", "_35", "_35", "_3a", "_2e", "_23", "_38" };
 			WriteInt(0);
-			WriteInt(0);
+			WriteInt(debugLocaleNames.Count);
+			foreach (var name in debugLocaleNames)
+			{
+				WriteString(name);
+				WriteInt(0);
+				WriteInt(0);
+			}
+			
 			WriteInt(0);
 			
 		}

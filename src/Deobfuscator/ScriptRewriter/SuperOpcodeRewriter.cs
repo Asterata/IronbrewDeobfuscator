@@ -1,4 +1,5 @@
-﻿using Loretta.CodeAnalysis;
+﻿using System.Reflection.Metadata.Ecma335;
+using Loretta.CodeAnalysis;
 using Loretta.CodeAnalysis.Lua;
 using Loretta.CodeAnalysis.Lua.Syntax;
 
@@ -8,9 +9,13 @@ public class SuperOpcodeRewriter : LuaSyntaxRewriter
 {
     private readonly List<string> _localNames = [];
 
-
+    // TODO FIX OR ADD NEW OPCODES TO FIX THE REWRITER
     public override SyntaxNode? VisitLocalVariableDeclarationStatement(LocalVariableDeclarationStatementSyntax node)
     {
+        
+        if (node.EqualsValues is not null)
+            return base.VisitLocalVariableDeclarationStatement(node);
+        
         if (!_localNames.Contains(node.Names[0].Name))
         {
             _localNames.Add(node.Names[0].Name);

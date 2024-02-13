@@ -105,7 +105,10 @@ math.ldexp = function(m,n) return m*(2^n) end
     public Chunk GetDumpedChunk()
     {
         var dumpedInformation = Dump();
-        var chunk = new Chunk();
+        var chunk = new Chunk
+        {
+            _functionId = "KbMjqNI7fyI8lYWRaawl4cqq1Ogojrp/IwOEnFWV5qY="
+        };
 
         GetInstructions(chunk, dumpedInformation);
         GetPrototypes(chunk, dumpedInformation);

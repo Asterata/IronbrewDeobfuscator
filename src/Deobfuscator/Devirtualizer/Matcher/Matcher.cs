@@ -311,7 +311,8 @@ public class Matcher(Session session)
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("[ERROR] Operation did not match any of the Ironbrew2 Opcodes.\n");
                     Console.ResetColor();
-                    throw new Exception($"Operation:\n{operation.OperationBody!.NormalizeWhitespace().ToFullString()}");
+                    Console.WriteLine($"SuperOpcode:\n{operation.OperationBody!.NormalizeWhitespace().ToFullString()}\n\n");
+                    throw new Exception($"Operation:\n{operationCodeSyntaxNodes[0].NormalizeWhitespace().ToFullString()}");
                 }
             }
             
@@ -400,6 +401,7 @@ public class Matcher(Session session)
                 matchList.Add(true);
                 continue;
             }
+            
 
             // Fingerprint Matching.
             // This part is the most important part of the matcher.
