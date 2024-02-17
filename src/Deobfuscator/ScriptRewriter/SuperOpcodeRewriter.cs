@@ -30,7 +30,7 @@ public class SuperOpcodeRewriter : LuaSyntaxRewriter
 
     public override SyntaxNode? VisitAssignmentStatement(AssignmentStatementSyntax node)
     {
-        if (node.Variables is [IdentifierNameSyntax identifierName] && _localNames.Contains(identifierName.Name))
+        if (node.Variables is [IdentifierNameSyntax identifierName] && _localNames.Contains(identifierName.Name) && node.EqualsValues.Values[0] is not BinaryExpressionSyntax)
             return SyntaxFactory.LocalVariableDeclarationStatement(SyntaxFactory.SeparatedList<LocalDeclarationNameSyntax>().Add(SyntaxFactory.LocalDeclarationName(identifierName)), node.EqualsValues);
         
         return base.VisitAssignmentStatement(node);

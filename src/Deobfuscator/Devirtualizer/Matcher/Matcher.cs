@@ -18,7 +18,9 @@ public class Matcher(Session session)
     [
         "Stack",
         "Upvalues",
-        "Env"
+        "Env",
+        "Proto",
+        "Wrap"
     ];
 
     // Before you ask, this is NOT a string based matching. This is a fingerprint based matching.
@@ -309,7 +311,7 @@ public class Matcher(Session session)
                 if (session.IsDebug)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("[ERROR] Operation did not match any of the Ironbrew2 Opcodes.\n");
+                    Console.WriteLine($"[ERROR] Operation {operation.Enum} did not match any of the Ironbrew2 Opcodes.\n");
                     Console.ResetColor();
                     Console.WriteLine($"SuperOpcode:\n{operation.OperationBody!.NormalizeWhitespace().ToFullString()}\n\n");
                     throw new Exception($"Operation:\n{operationCodeSyntaxNodes[0].NormalizeWhitespace().ToFullString()}");
@@ -374,11 +376,12 @@ public class Matcher(Session session)
             var operationNode = operationCodeSyntaxNodes[i];
 
             // We will match the registers here.
-            // OP_A, OP_B, OP_C
+            // OP_A, OP_B, OP_C,
+            // OP_ENUM, OP_MOVE -> needed for closure
             if (operationNode is LiteralExpressionSyntax { Parent: ElementAccessExpressionSyntax } &&
                 opcodeNode is IdentifierNameSyntax
                 {
-                    Name: ("OP_A" or "OP_B" or "OP_C")
+                    Name: ("OP_A" or "OP_B" or "OP_C" or "OP_ENUM")
                 } opcodeIdentifier)
             {
                 // Add the register to the InstructionInformation.
@@ -431,6 +434,12 @@ public class Matcher(Session session)
 
             if (opcodeNode.Kind() != operationNode.Kind())
             {
+                if (opcodeNode is IdentifierNameSyntax { Identifier.ValueText: "OP_MOVE" }) // needed for closure
+                {
+                    matchList.Add(true);
+                    continue;
+                }
+                
                 matchList.Add(false);
                 break;
             }

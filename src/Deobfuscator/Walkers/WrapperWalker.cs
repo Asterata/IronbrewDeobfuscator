@@ -38,6 +38,8 @@ public class WrapperWalker(Session session) : LuaSyntaxWalker
         var protoTable = (ElementAccessExpressionSyntax)secondLocal.EqualsValues!.Values[0];
         var paramsTable = (ElementAccessExpressionSyntax)thirdLocal.EqualsValues!.Values[0];
         
+        var protoName = secondLocal.Names[0].Name;
+        
         if (instrTable.KeyExpression is not LiteralExpressionSyntax instrIdentifier ||
             protoTable.KeyExpression is not LiteralExpressionSyntax protoIdentifier ||
             paramsTable.KeyExpression is not LiteralExpressionSyntax paramsIdentifier)
@@ -60,6 +62,7 @@ public class WrapperWalker(Session session) : LuaSyntaxWalker
             Console.WriteLine("\tFound Proto identifier: " + protoIdentifier);
             Console.WriteLine("\tFound Params identifier: " + paramsIdentifier);
             Console.WriteLine("\tFound Chunk variable: " + chunkParam);
+            Console.WriteLine("\tFound Proto variable: " + protoName);
             Console.WriteLine("\tFound Upvalues variable: " + upvaluesParam);
             Console.WriteLine("\tFound Env variable: " + envParam);
             
@@ -77,6 +80,7 @@ public class WrapperWalker(Session session) : LuaSyntaxWalker
         session.ChunkInformation.Add("Proto", int.Parse(protoIdentifier.Token.Text));
         session.ChunkInformation.Add("Params", int.Parse(paramsIdentifier.Token.Text));
         session.WrapperInformation.Add("Chunk", chunkParam.ToString());
+        session.WrapperInformation.Add("Proto", protoName);
         session.WrapperInformation.Add("Upvalues", upvaluesParam.ToString());
         session.WrapperInformation.Add("Env", envParam.ToString());
         

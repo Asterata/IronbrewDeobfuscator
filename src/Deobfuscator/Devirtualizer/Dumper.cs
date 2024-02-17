@@ -285,7 +285,7 @@ math.ldexp = function(m,n) return m*(2^n) end
                     case ConstantMask.None:
                         newInstr.A = (int)(long)instructionLuaTable[session.InstructionInformation["OP_A"]];
                         
-                        if (operation.Opcode is Opcode.Jmp or Opcode.ForLoop or Opcode.ForPrep)
+                        if (operation.Opcode is Opcode.Jmp or Opcode.ForLoop or Opcode.ForPrep or Opcode.Closure)
                             newInstr.B = (int)(double)instructionLuaTable[session.InstructionInformation["OP_B"]];
                         else
                             newInstr.B = (int)(long)instructionLuaTable[session.InstructionInformation["OP_B"]];
