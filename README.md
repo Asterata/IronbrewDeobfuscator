@@ -1,4 +1,5 @@
 # Ironbrew Deobfuscator
+### Warning: This project is made for educational purposes only and cannot be used to deobfuscate licensed products.
 
 Ironbrew Deobfuscator is a tool designed to deobfuscate scripts obfuscated with [Ironbrew2](https://github.com/Trollicus/ironbrew-2).
 This deobfuscator only support the latest version of Ironbrew2!
